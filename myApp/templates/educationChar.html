@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>招聘数据可视化系统</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/static/static/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/static/static/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="/static/static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/static/static/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="/static/static/images/favicon.png"/>
+</head>
+<body>
+<div class="container-scroller">
+    <div class="row p-0 m-0 proBanner" id="proBanner">
+        <div class="col-md-12 p-0 m-0">
+            <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+                <div class="ps-lg-1">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and
+                            more with this template!</p>
+                        <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/?utm_source=organic&utm_medium=banner&utm_campaign=buynow_demo"
+                           target="_blank" class="btn me-2 buy-now-btn border-0">Get Pro</a>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/"><i
+                            class="mdi mdi-home me-3 text-white"></i></a>
+                    <button id="bannerClose" class="btn border-0 p-0">
+                        <i class="mdi mdi-close text-white me-0"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand brand-logo" href="index.html"><img src="/static/static/images/logo.svg"
+                                                                          alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/static/static/images/logo-mini.svg"
+                                                                               alt="logo"/></a>
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-sort-variant"></span>
+                </button>
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+
+            <ul class="navbar-nav mr-lg-4 w-100">
+                <li class="nav-item nav-search d-none d-lg-block w-100">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search now" aria-label="search"
+                               aria-describedby="search">
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item dropdown me-1">
+                    <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                       id="messageDropdown" href="#" data-bs-toggle="dropdown">
+                        <i class="mdi mdi-message-text mx-0"></i>
+                        <span class="count"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+                        <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <img src="/static/static/images/faces/face4.jpg" alt="image" class="profile-pic">
+                            </div>
+                            <div class="item-content flex-grow">
+                                <h6 class="ellipsis font-weight-normal">David Grey
+                                </h6>
+                                <p class="font-weight-light small-text text-muted mb-0">
+                                    The meeting is cancelled
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <img src="/static/static/images/faces/face2.jpg" alt="image" class="profile-pic">
+                            </div>
+                            <div class="item-content flex-grow">
+                                <h6 class="ellipsis font-weight-normal">Tim Cook
+                                </h6>
+                                <p class="font-weight-light small-text text-muted mb-0">
+                                    New product launch
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <img src="/static/static/images/faces/face3.jpg" alt="image" class="profile-pic">
+                            </div>
+                            <div class="item-content flex-grow">
+                                <h6 class="ellipsis font-weight-normal"> Johnson
+                                </h6>
+                                <p class="font-weight-light small-text text-muted mb-0">
+                                    Upcoming board meeting
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown me-4">
+                    <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
+                       id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+                        <i class="mdi mdi-bell mx-0"></i>
+                        <span class="count"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                         aria-labelledby="notificationDropdown">
+                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <div class="item-icon bg-success">
+                                    <i class="mdi mdi-information mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h6 class="font-weight-normal">Application Error</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Just now
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <div class="item-icon bg-warning">
+                                    <i class="mdi mdi-settings mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h6 class="font-weight-normal">Settings</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Private message
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <div class="item-icon bg-info">
+                                    <i class="mdi mdi-account-box mx-0"></i>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <h6 class="font-weight-normal">New user registration</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    2 days ago
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                        <img src="/static/static/images/faces/face5.jpg" alt="profile"/>
+                        <span class="nav-profile-name">{{ userInfo.username }}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-account-star text-primary"></i>
+                            个人信息
+                        </a>
+                        <a class="dropdown-item" href="/myApp/home">
+                            <i class="mdi mdi-animation text-primary"></i>
+                            可视化大屏
+                        </a>
+                        <a class="dropdown-item" href="/myApp/logOut">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            退出登录
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="mdi mdi-home menu-icon"></i>
+                        <span class="menu-title">Dash board</span>
+                    </a>
+                </li>
+                {#数据可视化#}
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                       aria-controls="ui-basic">
+                        <i class="mdi mdi-animation menu-icon"></i>
+                        <span class="menu-title">数据可视化</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="/myApp/salaryChar/">薪资分析</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="/myApp/educationChar/">经验学历分析</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="/myApp/industryChar/">行业分析</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="/myApp/cityChar/">城市分析</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {#数据表格#}
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth1" aria-expanded="false"
+                       aria-controls="auth1">
+                        <i class="mdi mdi-tab-minus menu-icon"></i>
+                        <span class="menu-title">数据表格</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth1">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/myApp/tableData/">
+                                工作职位数据 </a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth2" aria-expanded="false"
+                       aria-controls="auth2">
+                        <i class="mdi mdi-account menu-icon"></i>
+                        <span class="menu-title">个人信息</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth2">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/myApp/changeInfo/">
+                                信息管理 </a></li>
+                            <li class="nav-item"><a class="nav-link" href="/myApp/collectData/">
+                                收藏数据 </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth3" aria-expanded="false"
+                       aria-controls="auth3">
+                        <i class="mdi mdi-cloud menu-icon"></i>
+                        <span class="menu-title">数据词云图</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth3">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/myApp/titleCloud/">
+                                工作词云图 </a></li>
+                            <li class="nav-item"><a class="nav-link" href="/myApp/tagCloud/">
+                                工作标签词云图 </a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth4" aria-expanded="false"
+                       aria-controls="auth4">
+                        <i class="mdi mdi-star menu-icon"></i>
+                        <span class="menu-title">职位推荐</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth4">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/myApp/recommendPage/">
+                                推荐 </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth5" aria-expanded="false"
+                       aria-controls="auth5">
+                        <i class="mdi mdi-currency-usd menu-icon"></i>
+                        <span class="menu-title">薪资预测</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth5">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/myApp/predict/">
+                                预测 </a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth6" aria-expanded="false"
+                       aria-controls="auth6">
+                        <i class="mdi mdi-more menu-icon"></i>
+                        <span class="menu-title">更多信息</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth6">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="https://www.lagou.com/wn/">
+                                请访问网站，点击访问 </a></li>
+
+                        </ul>
+                    </div>
+
+
+                </li>
+
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 grid-margin">
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <div class="d-flex align-items-end flex-wrap">
+                                <div class="me-md-3 me-xl-5">
+                                    <h2>Welcome back,</h2>
+                                    <p class="mb-md-0">Your analytics dashboard template.</p>
+                                </div>
+                                <div class="d-flex">
+                                    <i class="mdi mdi-home text-muted hover-cursor"></i>
+                                    <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;数据可视化&nbsp;/&nbsp;</p>
+                                    <p class="text-primary mb-0 hover-cursor">经验学历分析</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end flex-wrap">
+                                <button type="button" class="btn btn-light bg-white btn-icon me-3 d-none d-md-block ">
+                                    <i class="mdi mdi-download text-muted"></i>
+                                </button>
+                                <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
+                                    <i class="mdi mdi-clock-outline text-muted"></i>
+                                </button>
+                                <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
+                                    <i class="mdi mdi-plus text-muted"></i>
+                                </button>
+                                <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-title">工资经验薪资人数图</p>
+                                <div id="mainA" style="width: 100%;height: 550px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-title">学历招聘人数图</p>
+                                <div id="mainB" style="width: 100%;height: 550px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+
+            {#            版权信息#}
+            {#            <footer class="footer">#}
+            {#                <div class="d-sm-flex justify-content-center justify-content-sm-between">#}
+            {#                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a#}
+            {#                            href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>#}
+            {#                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a#}
+            {#                            href="https://www.bootstrapdash.com/"#}
+            {#                            target="_blank"> Bootstrap dashboard  </a> templates</span>#}
+            {#                </div>#}
+            {#            </footer>#}
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<!-- plugins:js -->
+<script src="/static/static/vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<script src="/static/static/vendors/chart.js/Chart.min.js"></script>
+<script src="/static/static/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/static/static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="/static/static/js/off-canvas.js"></script>
+<script src="/static/static/js/hoverable-collapse.js"></script>
+<script src="/static/static/js/template.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="/static/static/js/dashboard.js"></script>
+<script src="/static/static/js/data-table.js"></script>
+<script src="/static/static/js/jquery.dataTables.js"></script>
+<script src="/static/static/js/dataTables.bootstrap4.js"></script>
+<!-- End custom js for this page-->
+
+<script src="/static/static/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="../../static/assets/js/echarts.js"></script>
+
+
+<script>
+    var chartDom = document.getElementById('mainB');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    let dashedPic = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM8AAAAOBAMAAAB6G1V9AAAAD1BMVEX////Kysrk5OTj4+TJycoJ0iFPAAAAG0lEQVQ4y2MYBaNgGAMTQQVFOiABhlEwCugOAMqzCykGOeENAAAAAElFTkSuQmCC';
+let color = ['#FF8700', '#ffc300', '#00e473', '#009DFF'];
+let chartData = {{ educationData|safe}};
+let arrName = [];
+let arrValue = [];
+let sum = 0;
+let pieSeries = [],
+    lineYAxis = [];
+
+// 数据处理
+chartData.forEach((v, i) => {
+    arrName.push(v.name);
+    arrValue.push(v.value);
+    sum = sum + v.value;
+})
+
+// 图表option整理
+chartData.forEach((v, i) => {
+    pieSeries.push({
+        name: '学历',
+        type: 'pie',
+        clockWise: false,
+        hoverAnimation: false,
+        radius: [65 - i * 15 + '%', 57 - i * 15 + '%'],
+        center: ["30%", "50%"],
+        label: {
+            show: false
+        },
+        data: [{
+            value: v.value,
+            name: v.name
+        }, {
+            value: sum - v.value,
+            name: '',
+            itemStyle: {
+                color: "rgba(0,0,0,0)"
+            }
+        }]
+    });
+    pieSeries.push({
+        name: '',
+        type: 'pie',
+        silent: true,
+        z: 1,
+        clockWise: false, //顺时加载
+        hoverAnimation: false, //鼠标移入变大
+        radius: [65 - i * 15 + '%',57 - i * 15 + '%'],
+        center: ["30%", "50%"],
+        label: {
+            show: false
+        },
+        data: [{
+            value: 7.5,
+            itemStyle: {
+                color: "#E3F0FF"
+            }
+        }, {
+            value: 2.5,
+            name: '',
+            itemStyle: {
+                color: "rgba(0,0,0,0)"
+            }
+        }]
+    });
+    v.percent = (v.value / sum * 100).toFixed(1) + "%";
+    lineYAxis.push({
+        value: i,
+        textStyle: {
+            rich: {
+                circle: {
+                    color: color[i],
+                    padding: [0, 5]
+                }
+            }
+        }
+    });
+})
+
+option = {
+    backgroundColor: '#fff',
+    color: color,
+    grid: {
+        top: '15%',
+        bottom: '54%',
+        left: "35%",
+        containLabel: false
+    },
+    tooltip: {
+        trigger: 'axis',
+    },
+    yAxis: [{
+        type: 'category',
+        inverse: true,
+        axisLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            formatter: function(params) {
+                let item = chartData[params];
+                console.log(item)
+                return '{line|}{circle|●}{name|'+ item.name +'}{bd||}{percent|'+item.percent+'}{value|'+ item.value+'}{unit|人}'
+            },
+            interval: 0,
+            inside: true,
+            textStyle: {
+                color: "#333",
+                fontSize: 14,
+                rich: {
+                    line: {
+                        width: 170,
+                        height: 10,
+                        backgroundColor: {image: dashedPic}
+                    },
+                    name: {
+                        color: '#666',
+                        fontSize: 14,
+                    },
+                    bd: {
+                        color: '#ccc',
+                        padding: [0, 5],
+                        fontSize: 14,
+                    },
+                    percent:{
+                        color: '#333',
+                        fontSize: 14,
+                    },
+                    value: {
+                        color: '#333',
+                        fontSize: 16,
+                        fontWeight: 500,
+                        padding: [0, 0, 0, 20]
+                    },
+                    unit: {
+                        fontSize: 14
+                    }
+                }
+            },
+            show: true
+        },
+        data: lineYAxis
+    }],
+    xAxis: [{
+        show: false
+    }],
+    series: pieSeries
+};
+    option && myChart.setOption(option);
+</script>
+
+<script>
+    var chartDom = document.getElementById('mainA');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'line'
+          },
+          backgroundColor: 'rgba(9, 24, 48, 0.5)',
+          borderColor: 'rgba(75, 253, 238, 0.4)',
+          textStyle: {
+            color: '#CFE3FC',
+          },
+        },
+        legend: [
+          {
+            data: ['平均薪资(元)'],
+            top: '0',
+            x: '0',
+            itemWidth: 8,
+            borderColor: 'rgba(255, 192, 0, 1)',
+            textStyle: {
+              color: 'rgba(0,0,0,.4)',
+              fontSize: 12
+            },
+            icon:'circle'
+          },
+          {
+            data: ['人数'],
+            top: '0',
+            x: '15%',
+            itemWidth: 8,
+            textStyle: {
+              color: 'rgba(0,0,0,.4)',
+              fontSize: 12
+            },
+            icon:'circle'
+          },
+          {
+            data: ['x'],
+            top: '0',
+            x: '30%',
+            itemStyle: {
+              borderWidth: 2
+            },
+            textStyle: {
+              color: 'rgba(0,0,0,.4)',
+              fontSize: 12
+            },
+            itemWidth: 15,
+            itemHeight: 8,
+          }
+        ],
+        grid: {
+          left: '20px',
+          right: '20px',
+          top: '70px',
+          bottom: '30px',
+          containLabel: true
+        },
+        toolbox: {
+          show: true,
+          orient: 'vertical',
+          x: 'right',
+          y: 'center'
+        },
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: true,
+            axisTick: {
+              show: false
+            },
+            data: {{ averageExperienceX|safe }},
+            axisLine: {
+              show:false,
+              lineStyle: {
+                color: 'rgba(0, 0, 0, 0.2)'
+              }
+            },
+            axisLabel: {
+              interval: 0,
+              color: 'rgba(0, 0, 0, 1)',
+              fontSize: 14
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: 'rgba(0, 0, 0, 0.2)'
+              },
+              symbol: ['none', 'arrow'],
+              symbolSize: [5, 12],
+              symbolOffset: [0, 10]
+            },
+
+            axisLabel: {
+              interval: 0,
+              color: 'rgba(54,58,68,0.70)',
+              fontSize: 14
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: 'rgba(0, 0, 0, 0.2)',
+                width: 1,
+                type: 'solid'
+              }
+            }
+          },
+          {
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+
+            axisLine: {
+              show: false,
+              lineStyle: {
+                color: 'rgba(207, 227, 252, 1)'
+              },
+              symbol: ['none', 'arrow'],
+              symbolSize: [5, 12],
+              symbolOffset: [0, 10]
+            },
+
+            axisLabel: {
+              interval: 0,
+              color: 'rgba(54,58,68,0.70)',
+              fontSize: 14,
+              formatter: '{value} '
+            },
+            splitLine: {
+              show: false,
+              lineStyle: {
+                color: 'rgba(39, 57, 75, 1)',
+                width: 1,
+                type: 'solid'
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: '人数',
+            yAxisIndex: 1,
+            type: 'line',
+            smooth: true,
+            showSymbol:false,
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: 'rgba(32,128,247,.4)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(32,128,247,0)'
+                }
+              ])
+            },
+            data: {{ averageExperienceY2|safe }},
+            symbol: 'circle',
+            symbolSize: 8,
+            itemStyle: {
+              normal: {
+                color: '#2080F7',
+                borderColor: '#2080F7',
+                lineStyle: {
+                  color: '#2080F7'
+                }
+              }
+            },
+
+          },
+
+          {
+            z:1,
+            type: 'bar',
+            barGap: '-100%',
+            yAxisIndex: 0,
+            name: '平均薪资(元)',
+            itemStyle: {
+              normal: {
+                color: '#B2D4FF'
+              }
+            },
+            barWidth: 24,
+            data: {{ averageExperienceY1|safe }}
+          }
+        ]
+  }
+    option && myChart.setOption(option);
+
+</script>
+
+
+</body>
+
+</html>
+

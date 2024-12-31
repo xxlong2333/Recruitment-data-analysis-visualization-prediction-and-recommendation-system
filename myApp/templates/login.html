@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+{% if messages %}
+    <script>
+        {%  for message in messages %}
+            alert('{{ message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+<head>
+    <title>登陆界面</title>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/static/js/jquery-1.7.2.min.js"></script>
+
+    {#  <script type="text/javascript">#}
+    {#    //登录/**/#}
+    {#    function login(){#}
+    {#      //alert("这是登录login");#}
+    {#      var username =$("#username").val();#}
+    {#      var password =$("#password").val();#}
+    {#      var usercode =$("#usercode").val();#}
+    {#      //表单验证，验证合法性#}
+    {#      if(username==""){#}
+    {#        alert("用户名不能为空！请重新输入用户名！");#}
+    {#        return;#}
+    {#      }#}
+    {#      if(password==""){#}
+    {#        alert("密码不能为空！请重新输入密码！");#}
+    {#        return;#}
+    {#      }#}
+    {#      if(usercode==""){#}
+    {#        alert("验证码不能为空！请重新输入验证码！");#}
+    {#        return;#}
+    {#      }#}
+    {##}
+    {#      //发送异步请求#}
+    {#      // $.post("/admins/login",{username:username,password:password},function (res){#}
+    {#      //   alert(JSON.stringfy(res));#}
+    {#      // })#}
+    {#      $.post("/admins/login",{username:username,password:password,usercode:usercode}, function (res)#}
+    {#      {#}
+    {#        //alert(JSON.stringify(res));#}
+    {#        if(res.code=="200"){#}
+    {#          location.href="/index";#}
+    {#        }else{#}
+    {#          alert(res.msg);#}
+    {#        }#}
+    {#      });#}
+    {#    }#}
+    {#    function changeImage(img){#}
+    {#      //每次点击图片重新请求图片#}
+    {#      img.src = "/static/static/image/code?" + new Date();#}
+    {#    }#}
+    {#  </script>#}
+
+    <style>
+        body {
+            background-image: url('/static/static/images/login/randombga.jpg'); /* 替换为你的图片路径 */
+            background-size: cover; /* 图片尺寸自适应屏幕 */
+            background-position: center; /* 图片居中 */
+            background-repeat: no-repeat; /* 防止图片重复显示 */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-form .btn {
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .register-link {
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+    <title>Login Page</title>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2> 用户登录</h2>
+
+    <form class="login-form" name="loginform" action="/myApp/login/" method="post" target="_self">
+
+        <input type="text" placeholder="请输入您的账户" class="inputstyle" id="username" name="username" value="" tabindex="1">
+        <input type="password" placeholder="请输入您的密码" class="inputstyle password" id="password" name="password" value=""
+               maxlength="16" tabindex="2">
+        <input type="text" placeholder="请输入您的验证码" style="width: 80%" class="inputstyle" id="usercode"
+               name="ucode" value="" maxlength="16" tabindex="2">
+        <img src="/static/static/image/code" alt="" style="width: 50px;height: 30px;cursor: pointer;"
+             onclick="changeImage(this);"/>
+
+
+        <div class="mt-3">
+            <button type="submit" onclick="register()"
+                    class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="">登录
+            </button>
+        </div>
+    </form>
+
+    <a href="/myApp/registry" class="register-link">未注册账号？进行注册</a>
+</div>
+
+</body>
+</html>

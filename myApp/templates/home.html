@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/res/style.css">
+    <link rel="stylesheet" href="../../static/assets/css/nucleo-icons.css">
+    <title></title>
+</head>
+
+<style>
+    .btn-primary {
+        color: #fff;
+        background-color: #4465c6;
+        border-color: #405fba;
+        height:30px;
+        width: 70px;
+        border-radius: 10px;
+    }
+</style>
+<body class="fill-parent"
+      dg-chart-auto-resize="true"
+      dg-chart-options="{title:{show:false},legend:{top:0},grid:{top:25}}"
+      dg-chart-theme="{color:'#F0F0F0',actualBackgroundColor:'#000c3b'}">
+<div class="head">
+    <div class="title">
+        <div class="title-left"></div>
+        <div class="title-value"><label>招聘数据可视化大屏</label></div>
+        <div class="title-right"></div>
+        <div style="position: absolute;right: 0;top: 0">
+            <a href="/myApp/salaryChar" style="text-decoration: none; color: #fff">
+                <button class="btn-primary" style="margin-right: 10px">首页</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="content">
+    <div class="layout layout-left-top">
+        <div class="panel">
+            <div class="title"><label>城市平均薪资TOP10</label></div>
+            <div id="mainA" style="width: 100%; height: 275px"></div>
+        </div>
+    </div>
+    <div class="layout layout-left-center">
+        <div class="panel">
+            <div class="title"><label>工资区间分析</label></div>
+            <div id="mainB" style="width: 100%; height: 275px"></div>
+        </div>
+    </div>
+    <div class="layout layout-left-bottom">
+        <div class="panel">
+            <div class="title"><label>工作经验工资分析</label></div>
+            <div id="mainC" style="width: 100%; height: 275px"></div>
+        </div>
+    </div>
+    <div class="layout layout-center-top">
+        <div class="panel">
+            <div class="chart chart-left" dg-chart-widget="">
+                <div style="text-align: center; margin-top: 35px">
+                    <i class="tim-icons" style="color:#5b85d9; font-size:37px;padding-top: 15px"></i>
+                    <span style="color: #5b85d9; font-size: 20px">最高薪资</span>
+                    <p style="color: #6685c3;">{{sorted_arr.0.4}}</p>
+                </div>
+            </div>
+
+            <div class="chart chart-center" dg-chart-widget="">
+                <div style="text-align: center; margin-top: 35px">
+                    <i class="tim-icons" style="color:#5b85d9; font-size:37px;padding-top: 15px"></i>
+                    <span style="color: #5b85d9; font-size: 20px">工作名称</span>
+                    <p style="color: #6685c3;">{{sorted_arr.0.00}}</p>
+                </div>
+            </div>
+            <div class="chart chart-right" dg-chart-widget="">
+                <div style="text-align: center; margin-top: 35px">
+                    <i class="tim-icons" style="color:#5b85d9; font-size:37px;padding-top: 15px"></i>
+                    <span style="color: #5b85d9; font-size: 20px">所在城市</span>
+                    <p style="color: #6685c3;">{{sorted_arr.0.12}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layout layout-center-bottom">
+        <div class="panel border-all">
+            <div class="chart" dg-chart-widget=""></div>
+            <div id="mainD" style="width: 100%; height: 550px"></div>
+        </div>
+    </div>
+    <div class="layout layout-right-top">
+        <div class="panel">
+            <div class="title"><label>公司人口分析</label></div>
+            <div id="mainE" style="width: 100%; height: 275px"></div>
+        </div>
+    </div>
+
+    <div class="layout layout-right-center">
+        <div class="panel">
+            <div class="title"><label>薪资Top10</label></div>
+            <div class="row_list">
+                <ul class="cases_list" style="height: 550px; overflow: auto">
+                    <li style="font-size:15px;margin-top: 9px;">
+                        <div>图片</div>
+                        <div>名称</div>
+                        <div>公司</div>
+                        <div>薪资</div>
+                        <div>城市</div>
+                    </li>
+                    {% for i in sorted_arr %}
+                        {#                            <li style="margin-top: 7px">#}
+                        {#                                <img src="{{ i.11 }}" alt="" style="height: 50px;width: 60px">#}
+                        {#                                <div style="height:50px;width: 60px;overflow:hidden;line-height: 39px" >{{i.1}}</div>#}
+                        {#                                <div style="height:50px;width: 60px;overflow:hidden;line-height: 39px" >{{i.2}}</div>#}
+                        {#                                <div >{{i.3}}</div>#}
+                        {#                                <div>{{i.12}}</div>#}
+                        {#                            </li>#}
+                        <li style="margin-top: 7px">
+                            <img src="{{ i.11 }}" alt="" style="height: 50px;width: 60px">
+                            <div style="height:80px;width: 120px;overflow:hidden;line-height: 39px">{{ i.1 }}</div>
+                            <div style="height:80px;width: 120px;overflow:hidden;line-height: 39px">{{ i.2 }}</div>
+                            <div style="width: 120px">{{ i.3 }}</div>
+                            <div style="width: 120px">{{ i.12 }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="mainF" style="width: 100%; height: 275px"></div>
+        </div>
+    </div>
+    {#	<div class="layout layout-right-bottom">#}
+    {#		<div class="panel">#}
+    {#			<div class="title"><label>标题</label></div>#}
+    {#			<div id="mainG" style="width: 100%; height: 275px"></div>#}
+    {#		</div>#}
+    {#	</div>#}
+</div>
+</body>
+<script src="../../static/assets/js/echarts.js"></script>
+<script src="../../static/assets/js/china.js"></script>
+
+<script>
+    var chartDom = document.getElementById('mainA');
+    var myChart = echarts.init(chartDom);
+    var option;
+    option = {
+        xAxis: {
+            type: 'value',
+        },
+        yAxis: {
+            type: 'category',
+            data: {{averageCityX | safe}}
+        },
+        dataZoom: [
+            {
+                type: 'slider',
+                yAxisIndex: 0,
+                start: 0,
+                end: 80,
+                show:false,
+            }
+        ],
+
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+
+        series: [
+            {
+                data: {{ averageCityY|safe }},
+                type: 'bar',
+                itemStyle: {
+                    borderRadius: [0, 5, 5, 0],
+                    borderColor: 'rgba(0,0,0,0,1)',
+                    borderWidth: 1,
+                    color: '#3275e5'
+                }
+            }
+        ]
+    };
+    option && myChart.setOption(option);
+    function changeData(x){
+        var st = x[0]
+        for (var i = 0; i < x.length; i++) {
+            x[i] = x[i+1]
+        }
+        x[x.length-1] = st
+    }
+    averageCityX = {{ averageCityX | safe }}
+    averageCityY = {{ averageCityY | safe }}
+    function circleOne() {
+        var chartDom = document.getElementById('mainA');
+        var myChart = echarts.init(chartDom);
+        var option;
+        this.changeData(averageCityX)
+        this.changeData(averageCityY)
+
+        option = {
+            xAxis: {
+                type: 'value',
+            },
+            yAxis: {
+                type: 'category',
+                data: averageCityX
+            },
+            dataZoom: [
+            {
+                type: 'slider',
+                yAxisIndex: 0,
+                start: 0,
+                end: 80,
+                show:false,
+            }
+        ],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+
+            series: [
+                {
+                    data: averageCityY,
+                    type: 'bar',
+                    itemStyle: {
+                        borderRadius: [0, 5, 5, 0],
+                        borderColor: 'rgba(0,0,0,0,1)',
+                        borderWidth: 1,
+                        color: '#3275e5'
+                    }
+                }
+            ]
+        }
+        option && myChart.setOption(option);
+    }
+    setInterval(this.circleOne, 2000);
+</script>
+<script>
+    var chartDom = document.getElementById('mainB');
+    var myChart = echarts.init(chartDom);
+    var option;
+    var img = 'data:image/png;base64,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';
+    var trafficWay = {{ salarycategoryData | safe }};
+
+    var data = [];
+    var color = ['#00ffff', '#00cfff', '#006ced', '#ffe000', '#ffa800', '#ff5b00', '#ff3000']
+    for (var i = 0; i < trafficWay.length; i++) {
+        data.push({
+            value: trafficWay[i].value,
+            name: trafficWay[i].name,
+            itemStyle: {
+                normal: {
+                    borderWidth: 5,
+                    shadowBlur: 20,
+                    borderColor: color[i],
+                    shadowColor: color[i]
+                }
+            }
+        }, {
+            value: 2,
+            name: '',
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: false
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    color: 'rgba(0, 0, 0, 0)',
+                    borderColor: 'rgba(0, 0, 0, 0)',
+                    borderWidth: 0
+                }
+            }
+        });
+    }
+    var seriesOption = [{
+        name: '',
+        type: 'pie',
+        clockWise: false,
+        radius: [60, 70],
+        hoverAnimation: false,
+        itemStyle: {
+            normal: {
+                label: {
+                    show: true,
+                    position: 'outside',
+                    color: '#ddd',
+                    formatter: function (params) {
+                        var percent = 0;
+                        var total = 0;
+                        for (var i = 0; i < trafficWay.length; i++) {
+                            total += trafficWay[i].value;
+                        }
+                        percent = ((params.value / total) * 100).toFixed(0);
+                        if (params.name !== '') {
+                            return '工资区间：' + params.name + '\n' + '\n' + '占百分比：' + percent + '%';
+                        } else {
+                            return '';
+                        }
+                    },
+                },
+                labelLine: {
+                    length: 20,
+                    length2: 30,
+                    show: true,
+                    color: '#00ffff'
+                }
+            }
+        },
+        data: data
+    }];
+    option = {
+        {#backgroundColor: '#0A2E5D',#}
+        color: color,
+        title: {
+            {#text: '教师职称',#}
+            top: '48%',
+            textAlign: "center",
+            left: "49%",
+            textStyle: {
+                color: '#fff',
+                fontSize: 22,
+                fontWeight: '400'
+            }
+        },
+        graphic: {
+            elements: [{
+                type: "image",
+                z: 3,
+                style: {
+                    image: img,
+                    width: 100,
+                    height: 70
+                },
+                left: 'center',
+                top: 'center',
+                position: [100, 100]
+            }]
+        },
+        tooltip: {
+            show: false
+        },
+        legend: {
+            icon: "circle",
+            orient: 'horizontal',
+            // x: 'left',
+            {#data: ['正高级教师', '高级教师', '一级教师', '二级教师', '三级教师'],#}
+            left: 0,
+            bottom: 30,
+            align: 'right',
+            textStyle: {
+                color: "#fff"
+            },
+            itemGap: 20
+        },
+        toolbox: {
+            show: false
+        },
+        series: seriesOption
+    }
+    option && myChart.setOption(option);
+</script>
+<script>
+    var chartDom = document.getElementById('mainC');
+    var myChart = echarts.init(chartDom);
+    var option;
+    /**
+     *
+     * 作者: GhostCat
+     * 博客: https://gcat.cc
+     * 描述: 双折线图
+     *
+     */
+
+    let xLabel = {{ expSalaryX|safe }}
+    let goToSchool = {{ expSalaryY1|safe}}
+    let goOutSchool = {{ expSalaryY2|safe}}
+
+    option = {
+        {#backgroundColor: '#0e1c47',#}
+        tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'transparent',
+            axisPointer: {
+                lineStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0,
+                            color: 'rgba(126,199,255,0)' // 0% 处的颜色
+                        }, {
+                            offset: 0.5,
+                            color: 'rgba(126,199,255,1)' // 100% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: 'rgba(126,199,255,0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
+                },
+            },
+            formatter: (p) => {
+                let dom = `<div style="width: 79px;
+	height: 50px;;color:#fff;position: relative;">
+        <svg style="position: absolute;top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);" class="svg" xmlns="http://www.w3.org/2000/svg" width="100" height="71" viewBox="0 0 84 55">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: #07172c;
+            fill-opacity: 0.8;
+            stroke: #a7d8ff;
+            stroke-linejoin: round;
+            stroke-opacity: 0.2;
+            stroke-width: 1px;
+            fill-rule: evenodd;
+          }
+
+        </style>
+      </defs>
+      <path id="矩形_419" data-name="矩形 419" class="cls-1" d="M266,595h74v50H266V624.046L261,620l5-3.984V595Z"
+        transform="translate(-258.5 -592.5)" />
+    </svg>
+        <div style="padding: 4px 8px 4px 14px;display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;position: relative;z-index: 1;">
+            <div style="margin-bottom: 4px;width:100%;display:${p[0] ? 'flex' : 'none'};justify-content:space-between;align-items:center;">
+                <span style="font-size:14px;color:#7ec7ff;">${p[0] ? p[0].seriesName : ''}</span>
+                <span style="font-size:14px;color:#fff;">${p[0] ? p[0].data : ''}</span>
+            </div>
+            <div style="width:100%;height:100%;display:${p[1] ? 'flex' : 'none'};justify-content:space-between;align-items:center;">
+                <span style="font-size:14px;color:#7ec7ff;">${p[1] ? p[1].seriesName : ''}</span>
+                <span style="font-size:14px;color:#fff;">${p[1] ? p[1].data : ''}</span>
+            </div>
+        </div>
+    </div>`
+                return dom
+            }
+        },
+        legend: {
+            align: "left",
+            right: '10%',
+            top: '10%',
+            type: 'plain',
+            textStyle: {
+                color: '#7ec7ff',
+                fontSize: 16
+            },
+            // icon:'rect',
+            itemGap: 25,
+            itemWidth: 18,
+            icon: 'path://M0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z',
+
+            data: [
+                {
+                    name: '最高薪资'
+                },
+                {
+                    name: '最低薪资' +
+                        '' +
+                        ''
+                }
+            ]
+        },
+        grid: {
+            top: '15%',
+            left: '15%',
+            right: '10%',
+            bottom: '25%',
+            // containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            axisLine: { //坐标轴轴线相关设置。数学上的x轴
+                show: true,
+                lineStyle: {
+                    color: '#233653'
+                },
+            },
+            axisLabel: { //坐标轴刻度标签的相关设置
+                textStyle: {
+                    color: '#7ec7ff',
+                    padding: 16,
+                    fontSize: 14
+                },
+                formatter: function (data) {
+                    return data
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#192a44'
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+            data: xLabel
+        }],
+        yAxis: [{
+            name: '￥',
+            nameTextStyle: {
+                color: "#7ec7ff",
+                fontSize: 16,
+                padding: 10
+            },
+            min: 0,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#192a44'
+                },
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: "#233653"
+                }
+
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#7ec7ff',
+                    padding: 16
+                },
+                formatter: function (value) {
+                    if (value === 0) {
+                        return value
+                    }
+                    return value
+                }
+            },
+            axisTick: {
+                show: false,
+            },
+        }],
+        series: [{
+            name: '最高薪资',
+            type: 'line',
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 0,
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    width: 5,
+                    color: "rgba(25,163,223,1)", // 线条颜色
+                },
+                borderColor: 'rgba(0,0,0,.4)',
+            },
+            itemStyle: {
+                color: "rgba(25,163,223,1)",
+                borderColor: "#646ace",
+                borderWidth: 2
+
+            },
+            tooltip: {
+                show: true
+            },
+            areaStyle: { //区域填充样式
+                normal: {
+                    //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: "rgba(25,163,223,.3)"
+
+
+                    },
+                        {
+                            offset: 1,
+                            color: "rgba(25,163,223, 0)"
+                        }
+                    ], false),
+                    shadowColor: 'rgba(25,163,223, 0.5)', //阴影颜色
+                    shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                }
+            },
+            data: goToSchool
+        }, {
+            name: '最低薪资',
+            type: 'line',
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 0,
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    width: 5,
+                    color: "rgba(10,219,250,1)", // 线条颜色
+                },
+                borderColor: 'rgba(0,0,0,.4)',
+            },
+            itemStyle: {
+                color: "rgba(10,219,250,1)",
+                borderColor: "#646ace",
+                borderWidth: 2
+
+            },
+            tooltip: {
+                show: true
+            },
+            areaStyle: { //区域填充样式
+                normal: {
+                    //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: "rgba(10,219,250,.3)"
+                    },
+                        {
+                            offset: 1,
+                            color: "rgba(10,219,250, 0)"
+                        }
+                    ], false),
+                    shadowColor: 'rgba(10,219,250, 0.5)', //阴影颜色
+                    shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                }
+            },
+            data: goOutSchool
+        }]
+    };
+    let len = 0
+    option && myChart.setOption(option);
+
+    function changeData(x){
+        var st = x[0]
+        for (var i = 0; i < x.length; i++) {
+            x[i] = x[i+1]
+        }
+        x[x.length-1] = st
+    }
+    function circleTwo() {
+        var chartDom = document.getElementById('mainC');
+        var myChart = echarts.init(chartDom);
+        var option;
+        this.changeData(xLabel)
+        this.changeData(goToSchool)
+        this.changeData(goOutSchool)
+         option = {
+        {#backgroundColor: '#0e1c47',#}
+             dataZoom: [
+            {
+                type: 'slider',
+                start: 0,
+                end: 80,
+                show:false,
+            }
+        ],
+        tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'transparent',
+            axisPointer: {
+                lineStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0,
+                            color: 'rgba(126,199,255,0)' // 0% 处的颜色
+                        }, {
+                            offset: 0.5,
+                            color: 'rgba(126,199,255,1)' // 100% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: 'rgba(126,199,255,0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
+                },
+            },
+            formatter: (p) => {
+                let dom = `<div style="width: 79px;
+	height: 50px;;color:#fff;position: relative;">
+        <svg style="position: absolute;top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);" class="svg" xmlns="http://www.w3.org/2000/svg" width="100" height="71" viewBox="0 0 84 55">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: #07172c;
+            fill-opacity: 0.8;
+            stroke: #a7d8ff;
+            stroke-linejoin: round;
+            stroke-opacity: 0.2;
+            stroke-width: 1px;
+            fill-rule: evenodd;
+          }
+
+        </style>
+      </defs>
+      <path id="矩形_419" data-name="矩形 419" class="cls-1" d="M266,595h74v50H266V624.046L261,620l5-3.984V595Z"
+        transform="translate(-258.5 -592.5)" />
+    </svg>
+        <div style="padding: 4px 8px 4px 14px;display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;position: relative;z-index: 1;">
+            <div style="margin-bottom: 4px;width:100%;display:${p[0] ? 'flex' : 'none'};justify-content:space-between;align-items:center;">
+                <span style="font-size:14px;color:#7ec7ff;">${p[0] ? p[0].seriesName : ''}</span>
+                <span style="font-size:14px;color:#fff;">${p[0] ? p[0].data : ''}</span>
+            </div>
+            <div style="width:100%;height:100%;display:${p[1] ? 'flex' : 'none'};justify-content:space-between;align-items:center;">
+                <span style="font-size:14px;color:#7ec7ff;">${p[1] ? p[1].seriesName : ''}</span>
+                <span style="font-size:14px;color:#fff;">${p[1] ? p[1].data : ''}</span>
+            </div>
+        </div>
+    </div>`
+                return dom
+            }
+        },
+        legend: {
+            align: "left",
+            right: '10%',
+            top: '10%',
+            type: 'plain',
+            textStyle: {
+                color: '#7ec7ff',
+                fontSize: 16
+            },
+            // icon:'rect',
+            itemGap: 25,
+            itemWidth: 18,
+            icon: 'path://M0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z',
+
+            data: [
+                {
+                    name: '最高薪资'
+                },
+                {
+                    name: '最低薪资' +
+                        '' +
+                        ''
+                }
+            ]
+        },
+        grid: {
+            top: '15%',
+            left: '15%',
+            right: '10%',
+            bottom: '25%',
+            // containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            axisLine: { //坐标轴轴线相关设置。数学上的x轴
+                show: true,
+                lineStyle: {
+                    color: '#233653'
+                },
+            },
+            axisLabel: { //坐标轴刻度标签的相关设置
+                textStyle: {
+                    color: '#7ec7ff',
+                    padding: 16,
+                    fontSize: 14
+                },
+                formatter: function (data) {
+                    return data
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#192a44'
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+            data: xLabel
+        }],
+        yAxis: [{
+            name: '￥',
+            nameTextStyle: {
+                color: "#7ec7ff",
+                fontSize: 16,
+                padding: 10
+            },
+            min: 0,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#192a44'
+                },
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: "#233653"
+                }
+
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#7ec7ff',
+                    padding: 16
+                },
+                formatter: function (value) {
+                    if (value === 0) {
+                        return value
+                    }
+                    return value
+                }
+            },
+            axisTick: {
+                show: false,
+            },
+        }],
+        series: [{
+            name: '最高薪资',
+            type: 'line',
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 0,
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    width: 5,
+                    color: "rgba(25,163,223,1)", // 线条颜色
+                },
+                borderColor: 'rgba(0,0,0,.4)',
+            },
+            itemStyle: {
+                color: "rgba(25,163,223,1)",
+                borderColor: "#646ace",
+                borderWidth: 2
+
+            },
+            tooltip: {
+                show: true
+            },
+            areaStyle: { //区域填充样式
+                normal: {
+                    //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: "rgba(25,163,223,.3)"
+
+
+                    },
+                        {
+                            offset: 1,
+                            color: "rgba(25,163,223, 0)"
+                        }
+                    ], false),
+                    shadowColor: 'rgba(25,163,223, 0.5)', //阴影颜色
+                    shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                }
+            },
+            data: goToSchool
+        }, {
+            name: '最低薪资',
+            type: 'line',
+            symbol: 'circle', // 默认是空心圆（中间是白色的），改成实心圆
+            showAllSymbol: true,
+            symbolSize: 0,
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    width: 5,
+                    color: "rgba(10,219,250,1)", // 线条颜色
+                },
+                borderColor: 'rgba(0,0,0,.4)',
+            },
+            itemStyle: {
+                color: "rgba(10,219,250,1)",
+                borderColor: "#646ace",
+                borderWidth: 2
+
+            },
+            dataZoom: [
+            {
+                type: 'slider',
+                yAxisIndex: 0,
+                start: 0,
+                end: 80,
+                show:false,
+            }
+        ],
+            tooltip: {
+                show: true
+            },
+            areaStyle: { //区域填充样式
+                normal: {
+                    //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: "rgba(10,219,250,.3)"
+                    },
+                        {
+                            offset: 1,
+                            color: "rgba(10,219,250, 0)"
+                        }
+                    ], false),
+                    shadowColor: 'rgba(10,219,250, 0.5)', //阴影颜色
+                    shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                }
+            },
+            data: goOutSchool
+        }]
+    };
+        option && myChart.setOption(option);
+    }
+    setInterval(this.circleTwo, 2000);
+
+</script>
+<script>
+
+    var chartDom = document.getElementById('mainD');
+    var myChart = echarts.init(chartDom);
+    var option;
+    var data = {{ adddresssumData|safe }}
+    var geoCoordMap = {
+        海门: [121.15, 31.89],
+        鄂尔多斯: [109.781327, 39.608266],
+        招远: [120.38, 37.35],
+        舟山: [122.207216, 29.985295],
+        齐齐哈尔: [123.97, 47.33],
+        盐城: [120.13, 33.38],
+        赤峰: [118.87, 42.28],
+        青岛: [120.33, 36.07],
+        乳山: [121.52, 36.89],
+        金昌: [102.188043, 38.520089],
+        泉州: [118.58, 24.93],
+        莱西: [120.53, 36.86],
+        日照: [119.46, 35.42],
+        胶南: [119.97, 35.88],
+        南通: [121.05, 32.08],
+        拉萨: [91.11, 29.97],
+        云浮: [112.02, 22.93],
+        梅州: [116.1, 24.55],
+        文登: [122.05, 37.2],
+        上海: [121.48, 31.22],
+        攀枝花: [101.718637, 26.582347],
+        威海: [122.1, 37.5],
+        承德: [117.93, 40.97],
+        厦门: [118.1, 24.46],
+        汕尾: [115.375279, 22.786211],
+        潮州: [116.63, 23.68],
+        丹东: [124.37, 40.13],
+        太仓: [121.1, 31.45],
+        曲靖: [103.79, 25.51],
+        烟台: [121.39, 37.52],
+        福州: [119.3, 26.08],
+        瓦房店: [121.979603, 39.627114],
+        即墨: [120.45, 36.38],
+        抚顺: [123.97, 41.97],
+        玉溪: [102.52, 24.35],
+        张家口: [114.87, 40.82],
+        阳泉: [113.57, 37.85],
+        莱州: [119.942327, 37.177017],
+        湖州: [120.1, 30.86],
+        汕头: [116.69, 23.39],
+        昆山: [120.95, 31.39],
+        宁波: [121.56, 29.86],
+        湛江: [110.359377, 21.270708],
+        揭阳: [116.35, 23.55],
+        荣成: [122.41, 37.16],
+        连云港: [119.16, 34.59],
+        葫芦岛: [120.836932, 40.711052],
+        常熟: [120.74, 31.64],
+        东莞: [113.75, 23.04],
+        河源: [114.68, 23.73],
+        淮安: [119.15, 33.5],
+        泰州: [119.9, 32.49],
+        南宁: [108.33, 22.84],
+        营口: [122.18, 40.65],
+        惠州: [114.4, 23.09],
+        江阴: [120.26, 31.91],
+        蓬莱: [120.75, 37.8],
+        韶关: [113.62, 24.84],
+        嘉峪关: [98.289152, 39.77313],
+        广州: [113.23, 23.16],
+        延安: [109.47, 36.6],
+        太原: [112.53, 37.87],
+        清远: [113.01, 23.7],
+        中山: [113.38, 22.52],
+        昆明: [102.73, 25.04],
+        寿光: [118.73, 36.86],
+        盘锦: [122.070714, 41.119997],
+        长治: [113.08, 36.18],
+        深圳: [114.07, 22.62],
+        珠海: [113.52, 22.3],
+        宿迁: [118.3, 33.96],
+        咸阳: [108.72, 34.36],
+        铜川: [109.11, 35.09],
+        平度: [119.97, 36.77],
+        佛山: [113.11, 23.05],
+        海口: [110.35, 20.02],
+        江门: [113.06, 22.61],
+        章丘: [117.53, 36.72],
+        肇庆: [112.44, 23.05],
+        大连: [121.62, 38.92],
+        临汾: [111.5, 36.08],
+        吴江: [120.63, 31.16],
+        石嘴山: [106.39, 39.04],
+        沈阳: [123.38, 41.8],
+        苏州: [120.62, 31.32],
+        茂名: [110.88, 21.68],
+        嘉兴: [120.76, 30.77],
+        长春: [125.35, 43.88],
+        胶州: [120.03336, 36.264622],
+        银川: [106.27, 38.47],
+        张家港: [120.555821, 31.875428],
+        三门峡: [111.19, 34.76],
+        锦州: [121.15, 41.13],
+        南昌: [115.89, 28.68],
+        柳州: [109.4, 24.33],
+        三亚: [109.511909, 18.252847],
+        自贡: [104.778442, 29.33903],
+        吉林: [126.57, 43.87],
+        阳江: [111.95, 21.85],
+        泸州: [105.39, 28.91],
+        西宁: [101.74, 36.56],
+        宜宾: [104.56, 29.77],
+        呼和浩特: [111.65, 40.82],
+        成都: [104.06, 30.67],
+        大同: [113.3, 40.12],
+        镇江: [119.44, 32.2],
+        桂林: [110.28, 25.29],
+        张家界: [110.479191, 29.117096],
+        宜兴: [119.82, 31.36],
+        北海: [109.12, 21.49],
+        西安: [108.95, 34.27],
+        金坛: [119.56, 31.74],
+        东营: [118.49, 37.46],
+        牡丹江: [129.58, 44.6],
+        遵义: [106.9, 27.7],
+        绍兴: [120.58, 30.01],
+        扬州: [119.42, 32.39],
+        常州: [119.95, 31.79],
+        潍坊: [119.1, 36.62],
+        重庆: [106.54, 29.59],
+        台州: [121.420757, 28.656386],
+        南京: [118.78, 32.04],
+        滨州: [118.03, 37.36],
+        贵阳: [106.71, 26.57],
+        无锡: [120.29, 31.59],
+        本溪: [123.73, 41.3],
+        克拉玛依: [84.77, 45.59],
+        渭南: [109.5, 34.52],
+        马鞍山: [118.48, 31.56],
+        宝鸡: [107.15, 34.38],
+        焦作: [113.21, 35.24],
+        句容: [119.16, 31.95],
+        北京: [116.46, 39.92],
+        徐州: [117.2, 34.26],
+        衡水: [115.72, 37.72],
+        包头: [110, 40.58],
+        绵阳: [104.73, 31.48],
+        乌鲁木齐: [87.68, 43.77],
+        枣庄: [117.57, 34.86],
+        杭州: [120.19, 30.26],
+        淄博: [118.05, 36.78],
+        鞍山: [122.85, 41.12],
+        溧阳: [119.48, 31.43],
+        库尔勒: [86.06, 41.68],
+        安阳: [114.35, 36.1],
+        开封: [114.35, 34.79],
+        济南: [117, 36.65],
+        德阳: [104.37, 31.13],
+        温州: [120.65, 28.01],
+        九江: [115.97, 29.71],
+        邯郸: [114.47, 36.6],
+        临安: [119.72, 30.23],
+        兰州: [103.73, 36.03],
+        沧州: [116.83, 38.33],
+        临沂: [118.35, 35.05],
+        南充: [106.110698, 30.837793],
+        天津: [117.2, 39.13],
+        富阳: [119.95, 30.07],
+        泰安: [117.13, 36.18],
+        诸暨: [120.23, 29.71],
+        郑州: [113.65, 34.76],
+        哈尔滨: [126.63, 45.75],
+        聊城: [115.97, 36.45],
+        芜湖: [118.38, 31.33],
+        唐山: [118.02, 39.63],
+        平顶山: [113.29, 33.75],
+        邢台: [114.48, 37.05],
+        德州: [116.29, 37.45],
+        济宁: [116.59, 35.38],
+        荆州: [112.239741, 30.335165],
+        宜昌: [111.3, 30.7],
+        义乌: [120.06, 29.32],
+        丽水: [119.92, 28.45],
+        洛阳: [112.44, 34.7],
+        秦皇岛: [119.57, 39.95],
+        株洲: [113.16, 27.83],
+        石家庄: [114.48, 38.03],
+        莱芜: [117.67, 36.19],
+        常德: [111.69, 29.05],
+        保定: [115.48, 38.85],
+        湘潭: [112.91, 27.87],
+        金华: [119.64, 29.12],
+        岳阳: [113.09, 29.37],
+        长沙: [113, 28.21],
+        衢州: [118.88, 28.97],
+        廊坊: [116.7, 39.53],
+        菏泽: [115.480656, 35.23375],
+        合肥: [117.27, 31.86],
+        武汉: [114.31, 30.52],
+        大庆: [125.03, 46.58]
+    };
+    var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    value: geoCoord.concat(data[i].value)
+                });
+            }
+        }
+        return res;
+    };
+
+    function renderItem(params, api) {
+        var coords = [
+            [116.7, 39.53],
+            [103.73, 36.03],
+            [112.91, 27.87],
+            [120.65, 28.01],
+            [119.57, 39.95]
+        ];
+        var points = [];
+        for (var i = 0; i < coords.length; i++) {
+            points.push(api.coord(coords[i]));
+        }
+        var color = api.visual('color');
+        return {
+            type: 'polygon',
+            shape: {
+                points: echarts.graphic.clipPointsByRect(points, {
+                    x: params.coordSys.x,
+                    y: params.coordSys.y,
+                    width: params.coordSys.width,
+                    height: params.coordSys.height
+                })
+            },
+            style: api.style({
+                fill: color,
+                stroke: echarts.color.lift(color)
+            })
+        };
+    }
+
+    var option = {
+        scale: 0.2,
+        backgroundColor: 'transparent',
+        tooltip: {
+            trigger: 'item',
+            formatter: function (params) {
+                return params.name + ' : ' + params.value[2] + ' ';  //显示地点和第三个数值
+            }
+        },
+        title: {
+            text: '省市分布数据',
+            subtext: '城市数据',
+            left: 'center',
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        //光圈属性
+        geo: {
+            show: true,
+            map: 'china',
+            zoom: 1.25,
+            label: {
+                normal: {
+                    show: false,
+                    color: "write",
+                    fontSize: 8,
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        color: "write",
+                        fontSize: "10px",
+                    },
+                },
+            },
+            roam: true,
+            itemStyle: {
+                normal: {
+                    areaColor: '#1959c4',
+                    borderColor: '#fff'
+                },
+                emphasis: {
+                    areaColor: '#2B91B7'
+                },
+            },
+        },
+
+        series: [
+            //所有的市
+            {
+                name: '数量',
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                data: convertData(data),
+                symbolSize: function (val) {
+                    return val[2] / 30;
+                },
+                showEffectOn: 'render',
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                hoverAnimation: true,
+
+                label: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: false
+                },
+                // 圆点的样式
+                itemStyle: {
+                    color: '#a4bef1',
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                    },
+                },
+            },
+        ],
+    };
+    option && myChart.setOption(option);
+</script>
+
+<script>
+    var chartDom = document.getElementById('mainE');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        {#backgroundColor: "#ffffff",#}
+        color: ["#37A2DA", "#32C5E9", "#67E0E3", "#9FE6B8", "#FFDB5C",],
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c}"
+        },
+
+        calculable: true,
+        series: [
+            {
+                name: '漏斗图',
+                type: 'funnel',
+                left: '10%',
+                top: 60,
+                bottom: 60,
+                width: '80%',
+
+
+                sort: 'descending',
+                gap: 2,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    emphasis: {
+                        textStyle: {
+                            fontSize: 20
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        length: 10,
+                        lineStyle: {
+                            width: 1,
+                            type: 'solid'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: 'black',
+                        borderWidth: 1
+                    }
+                },
+                data: {{ peopleCategoryData|safe}}
+            }
+        ]
+    };
+    option && myChart.setOption(option);
+</script>
+<style>
+    .row_list {
+        list-style: none;
+    }
+
+    .cases_list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cases_list li {
+        display: grid;
+        -ms-grid-columns: 15% 30% 15% 20% 20%;
+        grid-template-columns: 15% 30% 20% 15% 20%;
+        cursor: pointer;
+        margin-left: 23px;
+        text-align: center;
+        line-height: 30px;
+        color: rgb(238, 236, 236);
+    }
+</style>
+</html>
