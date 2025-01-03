@@ -386,9 +386,9 @@ def predict(request):
         userInfo = User.objects.get(username=uname)
         jobDataList = list(getjobData())
         cityList = list(set(x[12] for x in jobDataList))
-        eduList = list(set(x[6] for x in jobDataList))
         expList = list(set(x[5] for x in jobDataList))
-        print(111)
+        eduList = list(set(x[6] for x in jobDataList))
+        print(cityList, eduList, expList)
         return render(request, 'predict.html', {
             'userInfo': userInfo,
             'cityList': cityList,
@@ -400,17 +400,17 @@ def predict(request):
         userInfo = User.objects.get(username=uname)
         jobDataList = list(getjobData())
         cityList = list(set(x[12] for x in jobDataList))
-        eduList = list(set(x[5] for x in jobDataList))
-        expList = list(set(x[6] for x in jobDataList))
+        expList = list(set(x[5] for x in jobDataList))
+        eduList = list(set(x[6] for x in jobDataList))
+        print(cityList, eduList, expList)
 
         defaultCity = request.POST.get('city')
-        defaultEdu = request.POST.get('education')
         defaultExp = request.POST.get('workExp')
+        defaultEdu = request.POST.get('education')
 
-        print(defaultCity, defaultEdu, defaultExp)
+        print(defaultCity, defaultExp, defaultEdu)
 
-        # predicted_salary = predict_salary(defaultCity, defaultEdu, defaultExp)
-
+        predicted_salary = pred_salary(defaultCity, defaultExp, defaultEdu)
         return render(request, 'predict.html', {
             'userInfo': userInfo,
             'cityList': cityList,
@@ -419,6 +419,5 @@ def predict(request):
             'defaultCity': defaultCity,
             'defaultEdu': defaultEdu,
             'defaultExp': defaultExp,
-            # 'predicted_salary': predicted_salary,
-
+            'predicted_salary': predicted_salary,
         })

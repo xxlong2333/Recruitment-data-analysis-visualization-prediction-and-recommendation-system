@@ -385,7 +385,6 @@
                         <div class="card">
 
 
-
                             <form action="/myApp/predict/" method="POST">
 
                                 <div class="row">
@@ -393,7 +392,7 @@
                                     <div class="col-md-3">
                                         <div class="card-body">
 
-{#                                      <p class="card-title">选择列表</p>#}
+                                            {#                                      <p class="card-title">选择列表</p>#}
                                             <label for="exampleFormControlSelectCity">城市选择</label>
                                             <div class="form-group">
 
@@ -401,24 +400,6 @@
                                                         id="exampleFormControlSelectCity">
                                                     {% for i in cityList %}
                                                         {% if i == defaultCity %}
-                                                            <option selected value="{{ i }}"> {{ i }} </option>
-                                                        {% else %}
-                                                            <option value="{{ i }}"> {{ i }} </option>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card-body">
-
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelectEducation">学历选择</label>
-                                                <select name="education" class="form-select"
-                                                        id="exampleFormControlSelectEducation">
-                                                    {% for i in eduList %}
-                                                        {% if i == defaultEdu %}
                                                             <option selected value="{{ i }}"> {{ i }} </option>
                                                         {% else %}
                                                             <option value="{{ i }}"> {{ i }} </option>
@@ -448,6 +429,25 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="card-body">
+
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelectEducation">学历选择</label>
+                                                <select name="education" class="form-select"
+                                                        id="exampleFormControlSelectEducation">
+                                                    {% for i in eduList %}
+                                                        {% if i == defaultEdu %}
+                                                            <option selected value="{{ i }}"> {{ i }} </option>
+                                                        {% else %}
+                                                            <option value="{{ i }}"> {{ i }} </option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="col-md-3">
+                                        <div class="card-body">
                                             <button type="submit" class="btn btn-primary">提交</button>
                                         </div>
                                     </div>
@@ -460,10 +460,10 @@
                                         <div id="mainA" style="width: 100%;height: 450px">
                                             {% if predicted_salary %}
                                                 <h1 style="text-align: center; line-height: 350px">{{ predicted_salary }}</h1>
-                                                {% else %}
+                                            {% else %}
                                                 <h1 style="text-align: center; line-height: 350px">暂无数据~</h1>
                                             {% endif %}
-                                            {{ predicted_salary }}
+
                                         </div>
                                     </div>
                                 </div>

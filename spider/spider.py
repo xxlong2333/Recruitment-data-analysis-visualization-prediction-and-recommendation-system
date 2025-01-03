@@ -97,13 +97,13 @@ class spider(object):
         self.main(page)
 
     def saveData(self,data):
-        with open('../spark/jobData.csv', 'a', newline='', encoding='utf-8') as wf:
+        with open('../spark/jobData2.csv', 'a', newline='', encoding='utf-8') as wf:
             writer = csv.writer(wf)
             writer.writerow(data)
 
     def init(self):
-        if not os.path.exists('../spark/jobData.csv'):
-            with open('../spark/jobData.csv', 'w', encoding='utf-8', newline='') as wf:
+        if not os.path.exists('../spark/jobData2.csv'):
+            with open('../spark/jobData2.csv', 'w', encoding='utf-8', newline='') as wf:
                 writer = csv.writer(wf)
                 writer.writerow(
                     ['type','title', 'companyTitle', 'minSalary', 'maxSalary', 'workExperience', 'education',
@@ -113,11 +113,11 @@ class spider(object):
 
 if __name__ == '__main__':
     spiderobj = spider('java','北京',1)
-    #spiderobj.init()
+    spiderobj.init()
     #spiderobj.main(1)
     cityList = ['北京','上海','广州','深圳','杭州','苏州', '成都','南京','武汉','长沙']
     typeList = ['java','web前端','C语言','php开发','数据分析师','软件测试','IT运维','微信小程序','.NET']
     for city in cityList:
         for type in typeList:
             spiderobj = spider(type,city,1)
-            spiderobj.main(10)
+            spiderobj.main(5)
