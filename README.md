@@ -42,7 +42,7 @@ https://www.bilibili.com/video/BV1nJp7eYEJK?spm_id_from=333.788.videopod.episode
 + 克隆仓库到本地：
 
   ```
-  git clone URL_ADDRESS  git clone https://github.com/your-username/your-repo.git
+  git clone https://github.com/xxlong2333/Recruitment-data-analysis-visualization-prediction-and-recommendation-system.git
   ```
 + 安装依赖：
     ```
