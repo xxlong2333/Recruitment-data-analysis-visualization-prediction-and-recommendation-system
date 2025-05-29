@@ -39,25 +39,47 @@ https://www.bilibili.com/video/BV1nJp7eYEJK?spm_id_from=333.788.videopod.episode
 
 
 2. **安装步骤：**
++ 克隆仓库到本地：
+
+  ```
+  git clone URL_ADDRESS  git clone https://github.com/your-username/your-repo.git
+  ```
++ 安装依赖：
+    ```
+    pip install -r requirements.txt
+    ```
+
 3. **运行项目：**
-    + windows本机配置host修改： 
+ 
++ 配置windows本机配置host修改： 
    ```
+  添加到windows文件：C:\Windows\System32\drivers\etc\hosts
    192.168.73.131 node1
    192.168.73.132 node2
    192.168.73.133 node3
    ```
    Linux node1命令行：
-   ```
+   
++ 启动hadoop集群：
+```
    su hadoop
-   启动 hdfs: `start-dfs.sh`
-   启动 yarn: `start-yarn.sh`
-   启动 hive: 
+   start-dfs.sh
+   start-yarn.sh
+```
++ 启动hive集群：
+```
    cd /export/server
    cd hive
    nohup bin/hive --service metastore >> logs/metastore.log 2>&1 &
    nohup bin/hive --service hiveserver2 >> logs/hiveserver2.log 2>&1 &
-   启动thriftserver：
+
+```
++ 启动thriftserver：
+```
    cd /export/server
    cd spark
    sbin/start-thriftserver.sh --hiveconf hive.server2.thrift.port=10000 --hiveconf hive.server2.thrift.bind.host=node1 --master local[*]
+```
++ 运行django项目：
+   
    ```
